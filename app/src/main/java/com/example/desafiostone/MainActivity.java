@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                         Piada piada = response.body();
                         piadaNaTela1.setText(response.body().value);
                         constrainPiada1.setVisibility(View.VISIBLE);
-                        categoriaNaTela1.setText(response.body().categories[0]);
+                        categoriaNaTela1.setText(piada.categories[0]);
 
                     } else if (response.code() == 404) {
 
