@@ -10,12 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.desafiostone.model.Piada;
+import com.example.desafiostone.network.Retrofit;
+
 import java.net.UnknownHostException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,14 +42,11 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this,categorias, Toast.LENGTH_SHORT).show();
 
         if (categorias != null){
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("https://api.chucknorris.io/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
 
-            ChuckNorrisAPI service = retrofit.create(ChuckNorrisAPI.class);
 
-            service.listRepos(categorias).enqueue(new Callback<Piada>() {
+            ChuckNorrisAPI service = new Retrofit().createRetrofit();
+
+            service.buscarPiadaPorCategoria(categorias).enqueue(new Callback<Piada>() {
                 @Override
                 public void onResponse(Call<Piada> call, Response<Piada> response) {
 
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     public void telaPesquisa (View view){
         pesquisar = findViewById(R.id.search1);
 
-        startActivity(new Intent(this,SegundaTela.class));
+        startActivity(new Intent(this,TerceiraTela.class));
 
         //Toast.makeText(this,"Clicado", Toast.LENGTH_SHORT).show();
     }

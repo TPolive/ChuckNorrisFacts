@@ -1,13 +1,16 @@
 package com.example.desafiostone;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.desafiostone.network.Retrofit;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SegundaTela extends AppCompatActivity {
 
@@ -32,7 +35,26 @@ public class SegundaTela extends AppCompatActivity {
         Technology = findViewById(R.id.technology1);
         Music = findViewById(R.id.music1);
         Travel = findViewById(R.id.travel1);
-        Carrer = findViewById(R.id.carrer1);
+        Carrer = findViewById(R.id.label);
+
+        new Retrofit().createRetrofit().listaDeCategoria().enqueue(new Callback<String[]> () {
+
+            @Override
+            public void onResponse(Call<String[]> call, Response<String[]> response) {
+
+               if (response.isSuccessful()) {
+
+
+               }
+
+            }
+
+            @Override
+            public void onFailure(Call<String[]> call,Throwable t) {
+
+
+            }
+        });;
 
         Games.setOnClickListener(v -> {
 

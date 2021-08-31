@@ -22,6 +22,7 @@
         </activity>
 
         <activity android:name=".SegundaTela"></activity>
+        <activity android:name=".TerceiraTela"></activity>
 
     </application>
 
