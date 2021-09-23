@@ -1,6 +1,6 @@
 package com.example.desafiostone.network;
 
-import com.example.desafiostone.ChuckNorrisAPI;
+import com.example.desafiostone.Interface.ChuckNorrisAPI;
 
 import retrofit2.converter.gson.GsonConverterFactory;
 

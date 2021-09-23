@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.desafiostone.Interface.ChuckNorrisAPI;
+import com.example.desafiostone.model.FreeTextSearch;
 import com.example.desafiostone.model.Piada;
 import com.example.desafiostone.network.Retrofit;
 
@@ -18,7 +20,6 @@ import java.net.UnknownHostException;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public TextView categoriaNaTela1;
     public ConstraintLayout constrainPiada1;
     public TextView erroInternet1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +40,17 @@ public class MainActivity extends AppCompatActivity {
         constrainPiada1 = findViewById(R.id.constrainPiada);
         erroInternet1 = findViewById(R.id.erroInternet);
 
+        String editTextPersonName = getIntent().getStringExtra("textoPesquisado");
         String categorias = getIntent().getStringExtra("pesquisaTela1");
         Toast.makeText(this,categorias, Toast.LENGTH_SHORT).show();
+
+
+        ChuckNorrisAPI service = new Retrofit().createRetrofit();
 
         if (categorias != null){
 
 
-            ChuckNorrisAPI service = new Retrofit().createRetrofit();
+
 
             service.buscarPiadaPorCategoria(categorias).enqueue(new Callback<Piada>() {
                 @Override
@@ -79,6 +85,42 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+        }
+
+        if (editTextPersonName != null){
+
+            service.listaDePesquisaEscrita(editTextPersonName).enqueue(new Callback<FreeTextSearch>() {
+                @Override
+                public void onResponse(Call<FreeTextSearch> call, Response<FreeTextSearch> response) {
+
+                    if (response.isSuccessful()) {
+
+                        piadaNaTela1.setText(response.body().result[1].value);
+                        constrainPiada1.setVisibility(View.VISIBLE);
+                        if (response.body().result[0].categories.length > 0) {
+                            categoriaNaTela1.setText(response.body().result[1].categories[0]);
+                        } else {
+                            categoriaNaTela1.setText("Uncategorized");
+                        }
+
+                    } else if (response.code() == 404) {
+
+                        erroInternet1.setVisibility(View.VISIBLE);
+                        erroInternet1.setText("Esta categoria não está disponível");
+
+                    } else if (response.code() >= 400) {
+
+                        erroInternet1.setVisibility(View.VISIBLE);
+                        erroInternet1.setText("Houve algum erro de conexão");
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<FreeTextSearch> call, Throwable t) {
+
+                }
+            });
         }
 
     }

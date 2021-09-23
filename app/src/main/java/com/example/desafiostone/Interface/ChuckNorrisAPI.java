@@ -1,5 +1,6 @@
-package com.example.desafiostone;
+package com.example.desafiostone.Interface;
 
+import com.example.desafiostone.model.FreeTextSearch;
 import com.example.desafiostone.model.Piada;
 
 import retrofit2.Call;
@@ -12,5 +13,8 @@ public interface ChuckNorrisAPI {
 
         @GET("jokes/categories")
         Call<String[]> listaDeCategoria();
+
+        @GET("jokes/search")
+        Call<FreeTextSearch> listaDePesquisaEscrita(@Query("query") String query);
     }
 

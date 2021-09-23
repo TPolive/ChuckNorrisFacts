@@ -1,4 +1,4 @@
-package com.example.desafiostone;
+package com.example.desafiostone.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +8,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.desafiostone.Interface.OnSelectCategories;
+import com.example.desafiostone.R;
+
 public class AdaptadorDeCategorias extends RecyclerView.Adapter<AdaptadorDeCategorias.ViewHolder> {
-    private final String[] categorias;
-    private final OnSelectCategories onSelectCategories;
+    public String[] categorias;
+    public OnSelectCategories onSelectCategories;
 
     public AdaptadorDeCategorias(String[]categorias,OnSelectCategories onSelectCategories){
 
