@@ -1,4 +1,4 @@
-package com.example.desafiostone.Adapter;
+package com.example.desafiostone.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;

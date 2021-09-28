@@ -1,4 +1,4 @@
-package com.example.desafiostone.network;
+package com.example.desafiostone.retrofit;
 
 import com.example.desafiostone.Interface.ChuckNorrisAPI;
 

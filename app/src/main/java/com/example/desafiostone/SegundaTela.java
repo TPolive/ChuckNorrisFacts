@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.desafiostone.network.Retrofit;
+import com.example.desafiostone.retrofit.Retrofit;
 
 import retrofit2.Call;
 import retrofit2.Callback;

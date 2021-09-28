@@ -12,14 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.desafiostone.Adapter.AdaptadorDeCategorias;
+import com.example.desafiostone.adapter.AdaptadorDeCategorias;
 import com.example.desafiostone.Interface.OnSelectCategories;
-import com.example.desafiostone.network.Retrofit;
+import com.example.desafiostone.retrofit.Retrofit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Query;
 
 public class TerceiraTela extends AppCompatActivity implements OnSelectCategories {
 

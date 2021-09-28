@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.example.desafiostone.Interface.ChuckNorrisAPI;
 import com.example.desafiostone.model.FreeTextSearch;
 import com.example.desafiostone.model.Piada;
-import com.example.desafiostone.network.Retrofit;
+import com.example.desafiostone.retrofit.Retrofit;
 
 import java.net.UnknownHostException;
 
